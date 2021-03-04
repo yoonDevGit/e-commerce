@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/rooms
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    generate-ddl: true
+    properties:
+      hibernate:
+        format_sql: true
+
+#    open-in-view: false
