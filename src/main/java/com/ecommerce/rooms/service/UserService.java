@@ -14,29 +14,16 @@ public class UserService {
 
   public UserDto getUser(Long userId) {
     User user = userRepository.findById(userId).orElseThrow();
-
-    UserDto userDto = UserDto.builder()
-        .account(user.getAccount())
-        .email(user.getEmail())
-        .phone(user.getPhone())
-        .build();
-
-    return userDto;
+    return new UserDto(user);
   }
 
   public void createUser(UserDto userDto) {
-    User user = User.builder()
-        .account(userDto.getAccount())
-        .email(userDto.getEmail())
-        .phone(userDto.getPhone())
-        .build();
-
+    User user = new User(userDto);
     userRepository.save(user);
   }
 
   public void deleteUser(Long userId) {
     User user = userRepository.findById(userId).orElseThrow();
-
     userRepository.delete(user);
   }
 

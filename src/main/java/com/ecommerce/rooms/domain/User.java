@@ -3,6 +3,7 @@ package com.ecommerce.rooms.domain;
 import static javax.persistence.CascadeType.ALL;
 
 import com.ecommerce.rooms.domain.base.BaseTimeEntity;
+import com.ecommerce.rooms.dto.UserDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.util.List;
 import javax.persistence.Column;
@@ -23,7 +24,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Builder
 public class User extends BaseTimeEntity {
 
   @Id @GeneratedValue
@@ -39,4 +39,10 @@ public class User extends BaseTimeEntity {
   @OneToMany(mappedBy = "user", cascade = ALL)
   @JsonBackReference
   private List<Reservation> reservations;
+
+  public User(UserDto userDto) {
+    this.account = userDto.getAccount();
+    this.phone = userDto.getPhone();
+    this.email = userDto.getEmail();
+  }
 }

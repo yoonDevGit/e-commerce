@@ -1,14 +1,12 @@
 package com.ecommerce.rooms.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import com.ecommerce.rooms.domain.User;
+import lombok.*;
 
 @Data
 @EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserDto {
 
   private String account;
@@ -16,4 +14,10 @@ public class UserDto {
   private String phone;
 
   private String email;
+
+  public UserDto(User user) {
+    this.account = user.getAccount();
+    this.phone = user.getPhone();
+    this.email = user.getEmail();
+  }
 }

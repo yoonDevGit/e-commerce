@@ -10,10 +10,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@DiscriminatorValue("PENSTION")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DiscriminatorValue("PENSTION")
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PenstionAccommodation extends Accommodation {
 
   // 객실 정보

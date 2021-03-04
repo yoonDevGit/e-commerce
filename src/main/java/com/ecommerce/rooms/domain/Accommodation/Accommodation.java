@@ -36,9 +36,9 @@ import lombok.Setter;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class Accommodation extends BaseTimeEntity {
 
   @Id @GeneratedValue

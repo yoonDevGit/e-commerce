@@ -9,10 +9,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@DiscriminatorValue("HOTEL")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DiscriminatorValue("HOTEL")
 @AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class HotelAccommodation extends Accommodation {
 
   // 투숙객 혜택
