@@ -3,6 +3,7 @@ package com.ecommerce.rooms.controller.accommodation;
 import com.ecommerce.rooms.domain.Accommodation.PenstionAccommodation;
 import com.ecommerce.rooms.dto.accommodation.PenstionAccommodationDto;
 import com.ecommerce.rooms.service.AccommodationService;
+import java.util.NoSuchElementException;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -42,7 +43,7 @@ public class PenstionAccommodationController {
     try {
       accommodationService.deletePenstionAccommodation(accommodationId);
       return new ResponseEntity<>(HttpStatus.OK);
-    } catch (Exception e) {
+    } catch (NoSuchElementException e) {
       return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
     }
   }

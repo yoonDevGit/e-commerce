@@ -2,6 +2,7 @@ package com.ecommerce.rooms.controller;
 
 import com.ecommerce.rooms.dto.UserDto;
 import com.ecommerce.rooms.service.UserService;
+import java.util.NoSuchElementException;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,7 +41,7 @@ public class UserController {
     try {
       userService.deleteUser(userId);
       return new ResponseEntity<>(HttpStatus.OK);
-    } catch (Exception e) {
+    } catch (NoSuchElementException e) {
       return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
     }
   }

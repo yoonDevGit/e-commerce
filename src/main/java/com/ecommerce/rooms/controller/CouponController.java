@@ -1,7 +1,8 @@
 package com.ecommerce.rooms.controller;
 
+import com.ecommerce.rooms.dto.CouponDto;
 import com.ecommerce.rooms.dto.RoomDto;
-import com.ecommerce.rooms.service.RoomService;
+import com.ecommerce.rooms.service.CouponService;
 import java.util.NoSuchElementException;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -16,33 +17,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/room")
-public class RoomController {
+@RequestMapping("/coupon")
+public class CouponController {
 
-  private final RoomService roomService;
+  private final CouponService couponService;
 
-  @GetMapping("/{room-id}")
-  public ResponseEntity<RoomDto> getRoom(@PathVariable("room-id") @Valid Long roomId) {
-    return new ResponseEntity<>(roomService.getRoom(roomId), HttpStatus.OK);
+  @GetMapping("/{coupon-id}")
+  public ResponseEntity<CouponDto> getRoom(@PathVariable("coupon-id") @Valid Long couponId) {
+    return new ResponseEntity<>(couponService.getCoupon(couponId), HttpStatus.OK);
   }
 
   @PostMapping
-  public ResponseEntity<Void> createRoom(@Valid RoomDto roomDto) {
+  public ResponseEntity<Void> createRoom(@Valid CouponDto couponDto) {
     try {
-      roomService.createRoom(roomDto);
+      couponService.createCoupon(couponDto);
       return new ResponseEntity<>(HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
     }
   }
 
-  @DeleteMapping("/{room-id}")
-  public ResponseEntity<Void> deleteRoom(@PathVariable("room-id") @Valid Long roomId) {
+  @DeleteMapping("/{coupon-id}")
+  public ResponseEntity<Void> deleteRoom(@PathVariable("coupon-id") @Valid Long couponId) {
     try {
-      roomService.deleteRoom(roomId);
+      couponService.deleteCoupon(couponId);
       return new ResponseEntity<>(HttpStatus.OK);
     } catch (NoSuchElementException e) {
       return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
     }
   }
+
 }
