@@ -55,8 +55,4 @@ public class Reservation extends BaseEntity {
   @OneToMany(mappedBy = "reservation", cascade = ALL)
   @JsonBackReference
   private List<Coupon> coupons = new ArrayList<>();
-
-  @OneToMany(mappedBy = "reservation", cascade = ALL)
-  @JsonBackReference
-  private List<Point> points = new ArrayList<>();
 }

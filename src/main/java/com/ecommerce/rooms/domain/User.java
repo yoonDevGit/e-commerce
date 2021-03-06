@@ -36,6 +36,8 @@ public class User extends BaseTimeEntity {
 
   private String email;
 
+  private int point;
+
   @OneToMany(mappedBy = "user", cascade = ALL)
   @JsonBackReference
   private List<Reservation> reservations;
@@ -44,5 +46,6 @@ public class User extends BaseTimeEntity {
     this.account = userDto.getAccount();
     this.phone = userDto.getPhone();
     this.email = userDto.getEmail();
+    this.point = userDto.getPoint();
   }
 }

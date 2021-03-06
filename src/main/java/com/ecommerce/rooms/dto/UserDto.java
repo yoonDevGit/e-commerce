@@ -15,9 +15,12 @@ public class UserDto {
 
   private String email;
 
+  private int point;
+
   public UserDto(User user) {
     this.account = user.getAccount();
     this.phone = user.getPhone();
     this.email = user.getEmail();
+    this.point = user.getPoint();
   }
 }
