@@ -21,9 +21,9 @@ public class HotelAccommodationController {
 
   private final AccommodationService accommodationService;
 
-  @GetMapping("/{accommodation-id}")
+  @GetMapping("/{accommodationId}")
   public ResponseEntity<HotelAccommodationDto> getAccommodation(
-      @PathVariable("accommodation-id") @Valid Long accommodationId) {
+      @PathVariable("accommodationId") @Valid Long accommodationId) {
     return new ResponseEntity(accommodationService.getHotelAccommodation(accommodationId),
         HttpStatus.OK);
   }
@@ -39,9 +39,9 @@ public class HotelAccommodationController {
     }
   }
 
-  @DeleteMapping("/{accommodation-id}")
+  @DeleteMapping("/{accommodationId}")
   public ResponseEntity<Void> deleteAccommodation(
-      @PathVariable("accommodation-id") @Valid Long accommodationId) {
+      @PathVariable("accommodationId") @Valid Long accommodationId) {
     try {
       accommodationService.deleteHotelAccommodation(accommodationId);
       return new ResponseEntity<>(HttpStatus.OK);

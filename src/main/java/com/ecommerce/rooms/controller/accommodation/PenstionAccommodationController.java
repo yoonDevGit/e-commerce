@@ -22,9 +22,9 @@ public class PenstionAccommodationController {
 
   private final AccommodationService accommodationService;
 
-  @GetMapping("/{accommodation-id}")
+  @GetMapping("/{accommodationId}")
   public ResponseEntity<PenstionAccommodationDto> getAccommodation(
-      @PathVariable("accommodation-id") @Valid Long accommodationId) {
+      @PathVariable("accommodationId") @Valid Long accommodationId) {
     return new ResponseEntity<>(accommodationService.getPenstionAccommodation(accommodationId), HttpStatus.OK);
   }
 
@@ -38,8 +38,8 @@ public class PenstionAccommodationController {
     }
   }
 
-  @DeleteMapping("/{accommodation-id}")
-  public ResponseEntity<Void> deleteAccommodation(@PathVariable("accommodation-id") @Valid Long accommodationId) {
+  @DeleteMapping("/{accommodationId}")
+  public ResponseEntity<Void> deleteAccommodation(@PathVariable("accommodationId") @Valid Long accommodationId) {
     try {
       accommodationService.deletePenstionAccommodation(accommodationId);
       return new ResponseEntity<>(HttpStatus.OK);

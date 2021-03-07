@@ -21,8 +21,8 @@ public class RoomController {
 
   private final RoomService roomService;
 
-  @GetMapping("/{room-id}")
-  public ResponseEntity<RoomDto> getRoom(@PathVariable("room-id") @Valid Long roomId) {
+  @GetMapping("/{roomId}")
+  public ResponseEntity<RoomDto> getRoom(@PathVariable("roomId") @Valid Long roomId) {
     return new ResponseEntity<>(roomService.getRoom(roomId), HttpStatus.OK);
   }
 
@@ -36,8 +36,8 @@ public class RoomController {
     }
   }
 
-  @DeleteMapping("/{room-id}")
-  public ResponseEntity<Void> deleteRoom(@PathVariable("room-id") @Valid Long roomId) {
+  @DeleteMapping("/{roomId}")
+  public ResponseEntity<Void> deleteRoom(@PathVariable("roomId") @Valid Long roomId) {
     try {
       roomService.deleteRoom(roomId);
       return new ResponseEntity<>(HttpStatus.OK);

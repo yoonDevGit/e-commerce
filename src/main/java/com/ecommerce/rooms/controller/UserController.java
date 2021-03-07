@@ -21,8 +21,8 @@ public class UserController {
 
   private final UserService userService;
 
-  @GetMapping("/{user-id}")
-  public ResponseEntity<UserDto> getUser(@PathVariable("user-id") @Valid Long userId) {
+  @GetMapping("/{userId}")
+  public ResponseEntity<UserDto> getUser(@PathVariable("userId") @Valid Long userId) {
     return new ResponseEntity<>(userService.getUser(userId), HttpStatus.OK);
   }
 
@@ -36,8 +36,8 @@ public class UserController {
     }
   }
 
-  @DeleteMapping("/{user-id}")
-  public ResponseEntity<Void> deleteUser(@PathVariable("user-id") @Valid Long userId) {
+  @DeleteMapping("/{userId}")
+  public ResponseEntity<Void> deleteUser(@PathVariable("userId") @Valid Long userId) {
     try {
       userService.deleteUser(userId);
       return new ResponseEntity<>(HttpStatus.OK);
