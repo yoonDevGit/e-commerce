@@ -3,8 +3,10 @@ package com.ecommerce.rooms.domain.room;
 import static javax.persistence.FetchType.LAZY;
 
 import com.ecommerce.rooms.domain.Accommodation.Accommodation;
+import com.ecommerce.rooms.domain.Reservation;
 import com.ecommerce.rooms.domain.base.BaseTimeEntity;
 import com.ecommerce.rooms.dto.RoomDto;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -50,6 +53,10 @@ public class Room extends BaseTimeEntity {
 
   // 환불 규정
   private String refundPolicy;
+
+  @OneToOne(mappedBy = "room",fetch = LAZY)
+  @JsonBackReference
+  private Reservation reservation;
 
   @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "accommodation_id")

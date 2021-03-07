@@ -24,7 +24,7 @@ class UserServiceTest {
     @Test
     public void getUser() throws Exception {
         // GIVEN
-        UserDto userDto = new UserDto("dyshin", "010-0000-0000", "yoondeb93@gmail.com");
+        UserDto userDto = new UserDto("dyshin", "010-0000-0000", "yoondeb93@gmail.com", 0);
         User user = new User(userDto);
         userRepository.save(user);
 
@@ -41,7 +41,7 @@ class UserServiceTest {
     @ExceptionHandler(NoSuchElementException.class)
     public void deleteUser() {
         // GIVEN
-        UserDto userDto = new UserDto("dyshin", "010-0000-0000", "yoondeb93@gmail.com");
+        UserDto userDto = new UserDto("dyshin", "010-0000-0000", "yoondeb93@gmail.com", 0);
         User user = new User(userDto);
         userRepository.save(user);
 
