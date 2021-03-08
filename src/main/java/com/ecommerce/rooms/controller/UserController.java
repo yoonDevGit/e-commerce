@@ -1,6 +1,8 @@
 package com.ecommerce.rooms.controller;
 
+import com.ecommerce.rooms.dto.MailDto;
 import com.ecommerce.rooms.dto.UserDto;
+import com.ecommerce.rooms.service.MailService;
 import com.ecommerce.rooms.service.UserService;
 import java.util.NoSuchElementException;
 import javax.validation.Valid;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private final UserService userService;
+  private final MailService mailService;
 
   @GetMapping("/{userId}")
   public ResponseEntity<UserDto> getUser(@PathVariable("userId") @Valid Long userId) {
@@ -30,6 +33,8 @@ public class UserController {
   public ResponseEntity<Void> createUser(@Valid UserDto userDto) {
     try {
       userService.createUser(userDto);
+      MailDto mailDto = new MailDto(userDto.getEmail(), "Test Mail", "User create success");
+      mailService.sendMail(mailDto);
       return new ResponseEntity<>(HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
