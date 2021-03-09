@@ -1,6 +1,6 @@
 package com.ecommerce.rooms.dto.accommodation;
 
-import com.ecommerce.rooms.domain.Accommodation.PenstionAccommodation;
+import com.ecommerce.rooms.domain.Accommodation.AccommodationPenstion;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PenstionAccommodationDto extends AccommodationDto {
+public class AccommodationPenstionDto extends AccommodationDto {
 
   // 객실 정보
   private String roomInfo;
@@ -22,7 +22,7 @@ public class PenstionAccommodationDto extends AccommodationDto {
   // 바비큐 시설
   private String bbqFacilities;
 
-  public PenstionAccommodationDto(String name, String phone, String address,
+  public AccommodationPenstionDto(String name, String phone, String address,
       String detailedAddress, String notice, String basicInfo, String addPersonnelInfo,
       String refundPolicy, String etc, String nearbyInfo, String roomInfo,
       String pensionService, String bbqFacilities) {
@@ -33,10 +33,10 @@ public class PenstionAccommodationDto extends AccommodationDto {
     this.bbqFacilities = bbqFacilities;
   }
 
-  public PenstionAccommodationDto(PenstionAccommodation penstionAccommodation) {
-    super(penstionAccommodation);
-    this.roomInfo = penstionAccommodation.getRoomInfo();
-    this.pensionService = penstionAccommodation.getPensionService();
-    this.bbqFacilities = penstionAccommodation.getBbqFacilities();
+  public AccommodationPenstionDto(AccommodationPenstion accommodationPenstion) {
+    super(accommodationPenstion);
+    this.roomInfo = accommodationPenstion.getRoomInfo();
+    this.pensionService = accommodationPenstion.getPensionService();
+    this.bbqFacilities = accommodationPenstion.getBbqFacilities();
   }
 }

@@ -3,25 +3,23 @@ package com.ecommerce.rooms.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.ecommerce.rooms.domain.Accommodation.HotelAccommodation;
+import com.ecommerce.rooms.domain.Accommodation.AccommodationHotel;
 import com.ecommerce.rooms.domain.Reservation;
 import com.ecommerce.rooms.domain.User;
 import com.ecommerce.rooms.domain.room.Room;
 import com.ecommerce.rooms.dto.RoomDto;
 import com.ecommerce.rooms.dto.UserDto;
-import com.ecommerce.rooms.dto.accommodation.HotelAccommodationDto;
+import com.ecommerce.rooms.dto.accommodation.AccommodationHotelDto;
 import com.ecommerce.rooms.repository.AccommodationRepository;
 import com.ecommerce.rooms.repository.ReservationRepository;
 import com.ecommerce.rooms.repository.RoomRepository;
 import com.ecommerce.rooms.repository.UserRepository;
 import java.util.NoSuchElementException;
 import javax.transaction.Transactional;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.Rollback;
 
 @SpringBootTest
@@ -33,7 +31,7 @@ class ReservationServiceTest {
   @Autowired
   private ReservationRepository reservationRepository;
   @Autowired
-  private AccommodationRepository<HotelAccommodation> hotelAccommodationRepository;
+  private AccommodationRepository<AccommodationHotel> hotelAccommodationRepository;
   @Autowired
   private UserRepository userRepository;
   @Autowired
@@ -47,13 +45,13 @@ class ReservationServiceTest {
     userRepository.save(user);
 
     // 업체 등록
-    HotelAccommodationDto dto = new HotelAccommodationDto("dyshinHotel",
+    AccommodationHotelDto dto = new AccommodationHotelDto("dyshinHotel",
         "010-0000-0000", "seoul", "000-00", "notice", "basicInfo", "addPersonnelInfo",
         "refundPolicy", "etc", "nearbyInfo", "guestBenefits", "convenienceInfo",
         "cookingFacilities");
 
-    HotelAccommodation hotelAccommodation = new HotelAccommodation(dto);
-    hotelAccommodationRepository.save(hotelAccommodation);
+    AccommodationHotel accommodationHotel = new AccommodationHotel(dto);
+    hotelAccommodationRepository.save(accommodationHotel);
 
     // 객실 등록
     RoomDto roomDto = new RoomDto("room", 10000, "0000-00-00", "1111-11-11", "basicInfo",

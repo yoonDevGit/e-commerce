@@ -1,11 +1,10 @@
 package com.ecommerce.rooms.domain.Accommodation;
 
-import com.ecommerce.rooms.dto.accommodation.PenstionAccommodationDto;
+import com.ecommerce.rooms.dto.accommodation.AccommodationPenstionDto;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +13,7 @@ import lombok.NoArgsConstructor;
 @DiscriminatorValue("PENSTION")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PenstionAccommodation extends Accommodation {
+public class AccommodationPenstion extends Accommodation {
 
   // 객실 정보
   private String roomInfo;
@@ -25,10 +24,10 @@ public class PenstionAccommodation extends Accommodation {
   // 바비큐 시설
   private String bbqFacilities;
 
-  public PenstionAccommodation(PenstionAccommodationDto penstionAccommodationDto) {
-    super(penstionAccommodationDto);
-    this.roomInfo = penstionAccommodationDto.getRoomInfo();
-    this.pensionService = penstionAccommodationDto.getPensionService();
-    this.bbqFacilities = penstionAccommodationDto.getBbqFacilities();
+  public AccommodationPenstion(AccommodationPenstionDto accommodationPenstionDto) {
+    super(accommodationPenstionDto);
+    this.roomInfo = accommodationPenstionDto.getRoomInfo();
+    this.pensionService = accommodationPenstionDto.getPensionService();
+    this.bbqFacilities = accommodationPenstionDto.getBbqFacilities();
   }
 }

@@ -1,19 +1,17 @@
 package com.ecommerce.rooms.dto.accommodation;
 
-import com.ecommerce.rooms.domain.Accommodation.Accommodation;
-import com.ecommerce.rooms.domain.Accommodation.HotelAccommodation;
+import com.ecommerce.rooms.domain.Accommodation.AccommodationHotel;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class HotelAccommodationDto extends AccommodationDto {
+public class AccommodationHotelDto extends AccommodationDto {
 
   // 투숙객 혜택
   private String guestBenefits;
@@ -24,7 +22,7 @@ public class HotelAccommodationDto extends AccommodationDto {
   // 취사 시설
   private String cookingFacilities;
 
-  public HotelAccommodationDto(String name, String phone, String address, String detailedAddress,
+  public AccommodationHotelDto(String name, String phone, String address, String detailedAddress,
       String notice, String basicInfo, String addPersonnelInfo, String refundPolicy, String etc,
       String nearbyInfo, String guestBenefits, String convenienceInfo, String cookingFacilities) {
     super(name, phone, address, detailedAddress, notice, basicInfo, addPersonnelInfo, refundPolicy,
@@ -34,10 +32,10 @@ public class HotelAccommodationDto extends AccommodationDto {
     this.cookingFacilities = cookingFacilities;
   }
 
-  public HotelAccommodationDto(HotelAccommodation hotelAccommodation) {
-    super(hotelAccommodation);
-    this.guestBenefits = hotelAccommodation.getGuestBenefits();
-    this.convenienceInfo = hotelAccommodation.getConvenienceInfo();
-    this.cookingFacilities = hotelAccommodation.getCookingFacilities();
+  public AccommodationHotelDto(AccommodationHotel accommodationHotel) {
+    super(accommodationHotel);
+    this.guestBenefits = accommodationHotel.getGuestBenefits();
+    this.convenienceInfo = accommodationHotel.getConvenienceInfo();
+    this.cookingFacilities = accommodationHotel.getCookingFacilities();
   }
 }

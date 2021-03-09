@@ -1,6 +1,6 @@
 package com.ecommerce.rooms.domain.Accommodation;
 
-import com.ecommerce.rooms.dto.accommodation.HotelAccommodationDto;
+import com.ecommerce.rooms.dto.accommodation.AccommodationHotelDto;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import lombok.AccessLevel;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @DiscriminatorValue("HOTEL")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class HotelAccommodation extends Accommodation {
+public class AccommodationHotel extends Accommodation {
 
   // 투숙객 혜택
   private String guestBenefits;
@@ -24,10 +24,10 @@ public class HotelAccommodation extends Accommodation {
   // 취사 시설
   private String cookingFacilities;
 
-  public HotelAccommodation(HotelAccommodationDto hotelAccommodationDto) {
-    super(hotelAccommodationDto);
-    this.guestBenefits = hotelAccommodationDto.getGuestBenefits();
-    this.convenienceInfo = hotelAccommodationDto.getConvenienceInfo();
-    this.cookingFacilities = hotelAccommodationDto.getCookingFacilities();
+  public AccommodationHotel(AccommodationHotelDto accommodationHotelDto) {
+    super(accommodationHotelDto);
+    this.guestBenefits = accommodationHotelDto.getGuestBenefits();
+    this.convenienceInfo = accommodationHotelDto.getConvenienceInfo();
+    this.cookingFacilities = accommodationHotelDto.getCookingFacilities();
   }
 }
