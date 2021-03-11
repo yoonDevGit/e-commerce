@@ -23,12 +23,12 @@ public class CouponController {
   private final CouponService couponService;
 
   @GetMapping("/{couponId}")
-  public ResponseEntity<CouponDto> getRoom(@PathVariable("couponId") @Valid Long couponId) {
+  public ResponseEntity<CouponDto> getCoupon(@PathVariable("couponId") @Valid Long couponId) {
     return new ResponseEntity<>(couponService.getCoupon(couponId), HttpStatus.OK);
   }
 
   @PostMapping
-  public ResponseEntity<Void> createRoom(@Valid CouponDto couponDto) {
+  public ResponseEntity<Void> createCoupon(@Valid CouponDto couponDto) {
     try {
       couponService.createCoupon(couponDto);
       return new ResponseEntity<>(HttpStatus.OK);
@@ -38,7 +38,7 @@ public class CouponController {
   }
 
   @DeleteMapping("/{couponId}")
-  public ResponseEntity<Void> deleteRoom(@PathVariable("couponId") @Valid Long couponId) {
+  public ResponseEntity<Void> deleteCoupon(@PathVariable("couponId") @Valid Long couponId) {
     try {
       couponService.deleteCoupon(couponId);
       return new ResponseEntity<>(HttpStatus.OK);
