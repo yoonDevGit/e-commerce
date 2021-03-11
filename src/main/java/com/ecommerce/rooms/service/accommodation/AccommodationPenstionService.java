@@ -44,4 +44,8 @@ public class AccommodationPenstionService {
         .findAll(pageable);
     return penstionAccommodations.map(AccommodationPenstionDto::new);
   }
+
+  public AccommodationPenstionDto getPenstionAccommodationRooms(Long accommodationId) {
+    return new AccommodationPenstionDto(penstionAccommodationRepository.findRoomAll(accommodationId));
+  }
 }

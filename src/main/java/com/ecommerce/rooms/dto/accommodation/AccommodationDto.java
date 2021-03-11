@@ -1,15 +1,15 @@
 package com.ecommerce.rooms.dto.accommodation;
 
 import com.ecommerce.rooms.domain.Accommodation.Accommodation;
+import com.ecommerce.rooms.dto.RoomDto;
+import java.util.List;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class AccommodationDto {
 
@@ -43,6 +43,23 @@ public abstract class AccommodationDto {
     // 주변 정보
     private String nearbyInfo;
 
+    private List<RoomDto> rooms;
+
+    public AccommodationDto(String name, String phone, String address, String detailedAddress,
+        String notice, String basicInfo, String addPersonnelInfo, String refundPolicy,
+        String etc, String nearbyInfo) {
+        this.name = name;
+        this.phone = phone;
+        this.address = address;
+        this.detailedAddress = detailedAddress;
+        this.notice = notice;
+        this.basicInfo = basicInfo;
+        this.addPersonnelInfo = addPersonnelInfo;
+        this.refundPolicy = refundPolicy;
+        this.etc = etc;
+        this.nearbyInfo = nearbyInfo;
+    }
+
     public AccommodationDto(Accommodation accommodation) {
         this.name = accommodation.getName();
         this.phone = accommodation.getPhone();
@@ -54,5 +71,6 @@ public abstract class AccommodationDto {
         this.refundPolicy = accommodation.getRefundPolicy();
         this.etc = accommodation.getEtc();
         this.nearbyInfo = accommodation.getNearbyInfo();
+        this.rooms = RoomDto.toList(accommodation.getRooms());
     }
 }

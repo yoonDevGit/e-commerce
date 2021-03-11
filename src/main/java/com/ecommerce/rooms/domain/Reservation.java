@@ -7,7 +7,6 @@ import static javax.persistence.FetchType.LAZY;
 import com.ecommerce.rooms.common.Constant.ReservationStatus;
 import com.ecommerce.rooms.domain.base.BaseEntity;
 import com.ecommerce.rooms.domain.room.Room;
-import com.ecommerce.rooms.dto.ReservationDto;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.ArrayList;

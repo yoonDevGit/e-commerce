@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,13 @@ public class AccommodationHotelController {
         HttpStatus.OK);
   }
 
+  @GetMapping("/{accommodationId}/rooms")
+  public ResponseEntity<AccommodationHotelDto> getAccommodationRooms(
+      @PathVariable("accommodationId") @Valid Long accommodationId) {
+    return new ResponseEntity(accommodationHotelService.getHotelAccommodationRooms(accommodationId),
+        HttpStatus.OK);
+  }
+
   @GetMapping("/page")
   @ResponseStatus
   public Page<AccommodationHotelDto> getPageAll(
@@ -48,7 +56,7 @@ public class AccommodationHotelController {
 
   @PostMapping
   public ResponseEntity<Void> createAccommodation(
-      @Valid AccommodationHotelDto accommodationHotelDto) {
+      @RequestBody @Valid AccommodationHotelDto accommodationHotelDto) {
     try {
       accommodationHotelService.createHotelAccommodation(accommodationHotelDto);
       return new ResponseEntity<>(HttpStatus.OK);

@@ -45,4 +45,7 @@ public class AccommodationHotelService {
     return hotelAccommodations.map(AccommodationHotelDto::new);
   }
 
+  public AccommodationHotelDto getHotelAccommodationRooms(Long accommodationId) {
+    return new AccommodationHotelDto(hotelAccommodationRepository.findRoomAll(accommodationId));
+  }
 }

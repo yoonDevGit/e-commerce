@@ -1,5 +1,6 @@
 package com.ecommerce.rooms.controller.accommodation;
 
+import com.ecommerce.rooms.dto.accommodation.AccommodationHotelDto;
 import com.ecommerce.rooms.dto.accommodation.AccommodationPenstionDto;
 import com.ecommerce.rooms.service.accommodation.AccommodationPenstionService;
 import java.util.NoSuchElementException;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +35,13 @@ public class AccommodationPenstionController {
         accommodationPenstionService.getPenstionAccommodation(accommodationId), HttpStatus.OK);
   }
 
+  @GetMapping("/{accommodationId}/rooms")
+  public ResponseEntity<AccommodationHotelDto> getAccommodationRooms(
+      @PathVariable("accommodationId") @Valid Long accommodationId) {
+    return new ResponseEntity(accommodationPenstionService.getPenstionAccommodationRooms(accommodationId),
+        HttpStatus.OK);
+  }
+
   @GetMapping("/page")
   @ResponseStatus
   public Page<AccommodationPenstionDto> getPageAll(
@@ -48,7 +57,7 @@ public class AccommodationPenstionController {
 
   @PostMapping
   public ResponseEntity<Void> createAccommodation(
-      @Valid AccommodationPenstionDto accommodationPenstionDto) {
+      @RequestBody @Valid AccommodationPenstionDto accommodationPenstionDto) {
     try {
       accommodationPenstionService.createPenstionAccommodation(accommodationPenstionDto);
       return new ResponseEntity<>(HttpStatus.OK);

@@ -1,6 +1,8 @@
 package com.ecommerce.rooms.dto;
 
 import com.ecommerce.rooms.domain.room.Room;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -44,4 +46,7 @@ public class RoomDto {
     this.refundPolicy = room.getRefundPolicy();
   }
 
+  public static List<RoomDto> toList(List<Room> rooms) {
+    return rooms.stream().map(RoomDto::new).collect(Collectors.toList());
+  }
 }

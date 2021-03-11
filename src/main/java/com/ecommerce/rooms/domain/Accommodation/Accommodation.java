@@ -79,7 +79,7 @@ public abstract class Accommodation extends BaseTimeEntity {
   @JsonBackReference
   private List<Room> rooms;
 
-  @ManyToOne(fetch = LAZY, cascade = ALL)
+  @ManyToOne(fetch = LAZY)
   @JoinColumn(name = "reservation_id")
   @JsonBackReference
   private Reservation reservation;
