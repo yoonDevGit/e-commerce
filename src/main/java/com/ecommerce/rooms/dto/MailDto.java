@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MailDto {
 
-  private String from;
+  private String to;
 
   private String title;
 

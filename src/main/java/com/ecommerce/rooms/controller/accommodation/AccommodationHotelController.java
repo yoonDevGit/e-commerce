@@ -22,33 +22,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/accommodation/hotel")
+@RequestMapping("/accommodation")
 public class AccommodationHotelController {
 
   private final AccommodationHotelService accommodationHotelService;
 
-  @GetMapping("/{accommodationId}")
+  @GetMapping("/hotel/{accommodationId}")
   public ResponseEntity<AccommodationHotelDto> getAccommodation(
       @PathVariable("accommodationId") @Valid Long accommodationId) {
     return new ResponseEntity(accommodationHotelService.getHotelAccommodation(accommodationId),
         HttpStatus.OK);
   }
 
-  @GetMapping("/{accommodationId}/rooms")
-  public ResponseEntity<AccommodationHotelDto> getAccommodationRooms(
-      @PathVariable("accommodationId") @Valid Long accommodationId) {
-    return new ResponseEntity(accommodationHotelService.getHotelAccommodationRooms(accommodationId),
-        HttpStatus.OK);
-  }
-
-  @GetMapping("/page")
+  @GetMapping("/hotels/page")
   @ResponseStatus
   public Page<AccommodationHotelDto> getPageAll(
       @PageableDefault(size = 5, sort = "name") Pageable pageable) {
     return accommodationHotelService.getPageAll(pageable);
   }
 
-  @GetMapping("/slice")
+  @GetMapping("/hotels/slice")
   public Slice<AccommodationHotelDto> getSliceAll(
       @PageableDefault(size = 5, sort = "name") Pageable pageable) {
     return accommodationHotelService.getSliceAll(pageable);
@@ -65,7 +58,7 @@ public class AccommodationHotelController {
     }
   }
 
-  @DeleteMapping("/{accommodationId}")
+  @DeleteMapping("/hotel/{accommodationId}")
   public ResponseEntity<Void> deleteAccommodation(
       @PathVariable("accommodationId") @Valid Long accommodationId) {
     try {

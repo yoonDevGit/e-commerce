@@ -14,13 +14,13 @@ public class MailService {
   private final JavaMailSender mailSender;
 
   @Value("${spring.mail.username}")
-  private String to;
+  private String from;
 
   public void sendMail(MailDto mailDto) {
     try {
       SimpleMailMessage message = new SimpleMailMessage();
-      message.setTo(to);
-      message.setFrom(mailDto.getFrom());
+      message.setFrom(from);
+      message.setTo(mailDto.getTo());
       message.setSubject(mailDto.getTitle());
       message.setText(mailDto.getMessage());
 

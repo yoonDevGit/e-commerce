@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class AccommodationHotelService {
 
-  private final AccommodationRepository<AccommodationHotel> hotelAccommodationRepository;
+  private final AccommodationRepository<AccommodationHotel> accommodationHotelRepository;
 
   public AccommodationHotelDto getHotelAccommodation(Long accommodationId) {
-    AccommodationHotel accommodationHotel = hotelAccommodationRepository.findById(accommodationId)
+    AccommodationHotel accommodationHotel = accommodationHotelRepository.findById(accommodationId)
         .orElseThrow();
     return new AccommodationHotelDto(accommodationHotel);
   }
@@ -24,28 +24,24 @@ public class AccommodationHotelService {
 
   public void createHotelAccommodation(AccommodationHotelDto accommodationHotelDto) {
     AccommodationHotel accommodationHotel = new AccommodationHotel(accommodationHotelDto);
-    hotelAccommodationRepository.save(accommodationHotel);
+    accommodationHotelRepository.save(accommodationHotel);
   }
 
 
   public void deleteHotelAccommodation(Long accommodationId) {
-    AccommodationHotel accommodationHotel = hotelAccommodationRepository.findById(accommodationId)
+    AccommodationHotel accommodationHotel = accommodationHotelRepository.findById(accommodationId)
         .orElseThrow();
-    hotelAccommodationRepository.delete(accommodationHotel);
+    accommodationHotelRepository.delete(accommodationHotel);
   }
 
 
   public Page<AccommodationHotelDto> getPageAll(Pageable pageable) {
-    Page<AccommodationHotel> users = hotelAccommodationRepository.findAll(pageable);
+    Page<AccommodationHotel> users = accommodationHotelRepository.findPageAll(pageable);
     return users.map(AccommodationHotelDto::new);
   }
 
   public Slice<AccommodationHotelDto> getSliceAll(Pageable pageable) {
-    Slice<AccommodationHotel> hotelAccommodations = hotelAccommodationRepository.findAll(pageable);
+    Slice<AccommodationHotel> hotelAccommodations = accommodationHotelRepository.findSliceAll(pageable);
     return hotelAccommodations.map(AccommodationHotelDto::new);
-  }
-
-  public AccommodationHotelDto getHotelAccommodationRooms(Long accommodationId) {
-    return new AccommodationHotelDto(hotelAccommodationRepository.findRoomAll(accommodationId));
   }
 }

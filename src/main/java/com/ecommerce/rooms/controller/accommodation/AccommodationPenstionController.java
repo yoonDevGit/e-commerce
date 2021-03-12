@@ -35,13 +35,6 @@ public class AccommodationPenstionController {
         accommodationPenstionService.getPenstionAccommodation(accommodationId), HttpStatus.OK);
   }
 
-  @GetMapping("/{accommodationId}/rooms")
-  public ResponseEntity<AccommodationHotelDto> getAccommodationRooms(
-      @PathVariable("accommodationId") @Valid Long accommodationId) {
-    return new ResponseEntity(accommodationPenstionService.getPenstionAccommodationRooms(accommodationId),
-        HttpStatus.OK);
-  }
-
   @GetMapping("/page")
   @ResponseStatus
   public Page<AccommodationPenstionDto> getPageAll(
