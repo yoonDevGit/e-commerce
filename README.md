@@ -17,8 +17,8 @@ Spring-Boot, JPA(JPQL), SMTP, lombok
     - User (완료)
     - Accommodation (완료)
     - Room (완료)
-    - Reservation (완)
-    - Coupon
+    - Reservation (완료)
+    - Coupon (완료)
 
 - SMTP 기능
     - User (완료)

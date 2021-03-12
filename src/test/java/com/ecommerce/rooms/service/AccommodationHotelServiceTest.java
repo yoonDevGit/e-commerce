@@ -10,6 +10,7 @@ import com.ecommerce.rooms.dto.accommodation.AccommodationHotelDto;
 import com.ecommerce.rooms.repository.AccommodationRepository;
 import com.ecommerce.rooms.repository.RoomRepository;
 import java.util.NoSuchElementException;
+import javax.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,7 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-@Rollback(false)
+@Transactional
 class AccommodationHotelServiceTest {
 
   @Autowired
@@ -149,7 +150,7 @@ class AccommodationHotelServiceTest {
 
     // THEN
     assertThat(accommodationHotelDtos.getNumber()).isEqualTo(0);
-    assertThat(accommodationHotelDtos.getNumberOfElements()).isEqualTo(2);
+    assertThat(accommodationHotelDtos.getNumberOfElements()).isEqualTo(20);
     assertThat(accommodationHotelDtos.isFirst()).isTrue();
     assertThat(accommodationHotelDtos.hasNext()).isFalse();
   }

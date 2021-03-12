@@ -4,6 +4,9 @@ import com.ecommerce.rooms.domain.Coupon;
 import com.ecommerce.rooms.dto.CouponDto;
 import com.ecommerce.rooms.repository.CouponRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,5 +28,15 @@ public class CouponService {
   public void deleteCoupon(Long couponId) {
     Coupon coupon = couponRepository.findById(couponId).orElseThrow();
     couponRepository.delete(coupon);
+  }
+
+  public Page<CouponDto> getPageAll(Pageable pageable) {
+    Page<Coupon> users = couponRepository.findAll(pageable);
+    return users.map(CouponDto::new);
+  }
+
+  public Slice<CouponDto> getSliceAll(Pageable pageable) {
+    Slice<Coupon> users = couponRepository.findAll(pageable);
+    return users.map(CouponDto::new);
   }
 }

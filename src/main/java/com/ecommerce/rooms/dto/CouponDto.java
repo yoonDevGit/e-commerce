@@ -13,12 +13,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CouponDto {
 
+  private String name;
+
   // 할인 금액
   private int discountAmount;
 
   private String description;
 
   public CouponDto(Coupon coupon) {
+    this.name = coupon.getName();
     this.discountAmount = coupon.getDiscountAmount();
     this.description = coupon.getDescription();
   }

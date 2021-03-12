@@ -38,7 +38,7 @@ public class ReservationController {
     return reservationService.getPageAll(pageable);
   }
 
-  @GetMapping("/reservation-slice")
+  @GetMapping("/reservations-slice")
   public Slice<ReservationDto> getSliceAll(@PageableDefault(size = 5, sort = "username") Pageable pageable) {
     return reservationService.getSliceAll(pageable);
   }

@@ -28,6 +28,8 @@ public class Coupon {
   @Column(name = "coupon_id")
   private Long id;
 
+  private String name;
+
   // 할인 금액
   private int discountAmount;
 
@@ -38,12 +40,14 @@ public class Coupon {
   @JsonManagedReference
   private Reservation reservation;
 
-  public Coupon(int discountAmount, String description) {
+  public Coupon(String name, int discountAmount, String description) {
+    this.name = name;
     this.discountAmount = discountAmount;
     this.description = description;
   }
 
   public Coupon(CouponDto couponDto) {
+    this.name = couponDto.getName();
     this.discountAmount = couponDto.getDiscountAmount();
     this.description = couponDto.getDescription();
   }
