@@ -25,30 +25,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
 public class UserController {
 
   private final UserService userService;
   private final MailService mailService;
 
-  @GetMapping("/{userId}")
+  @GetMapping("/user/{userId}")
   public ResponseEntity<UserDto> getUser(@PathVariable("userId") @Valid Long userId) {
     return new ResponseEntity<>(userService.getUser(userId), HttpStatus.OK);
   }
 
-  @GetMapping("/page")
+  @GetMapping("/users-page")
   @ResponseStatus
   public Page<UserDto> getPageAll(
       @PageableDefault(size = 5, sort = "username") Pageable pageable) {
     return userService.getPageAll(pageable);
   }
 
-  @GetMapping("/slice")
+  @GetMapping("/users-slice")
   public Slice<UserDto> getSliceAll(@PageableDefault(size = 5, sort = "username") Pageable pageable) {
     return userService.getSliceAll(pageable);
   }
 
-  @PostMapping
+  @PostMapping("/user")
   public ResponseEntity<Void> createUser(@RequestBody @Valid UserDto userDto) {
     try {
       userService.createUser(userDto);
@@ -60,7 +59,7 @@ public class UserController {
     }
   }
 
-  @DeleteMapping("/{userId}")
+  @DeleteMapping("/user/{userId}")
   public ResponseEntity<Void> deleteUser(@PathVariable("userId") @Valid Long userId) {
     try {
       userService.deleteUser(userId);

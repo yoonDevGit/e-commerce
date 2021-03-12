@@ -17,18 +17,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/reservation")
 public class ReservationController {
 
   private final ReservationService reservationService;
 
-  @GetMapping("/{reservationId}")
+  @GetMapping("/reservation/{reservationId}")
   public ResponseEntity<ReservationDto> getReservation(
       @PathVariable("reservationId") @Valid Long reservationId) {
     return new ResponseEntity<>(reservationService.getRservation(reservationId), HttpStatus.OK);
   }
 
-  @PostMapping
+  @PostMapping("/reservation")
   public ResponseEntity<Void> createReservation(@RequestParam("userId") @Valid Long userId,
       @RequestParam("roomId") @Valid Long roomId) {
 
@@ -40,7 +39,7 @@ public class ReservationController {
     }
   }
 
-  @DeleteMapping("/{reservationId}")
+  @DeleteMapping("/reservation/{reservationId}")
   public ResponseEntity<Void> deleteReservation(@PathVariable("reservationId") @Valid Long reservationId) {
     try {
       reservationService.deleteReservation(reservationId);

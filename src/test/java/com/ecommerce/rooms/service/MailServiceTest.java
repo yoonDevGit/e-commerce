@@ -17,7 +17,7 @@ class MailServiceTest {
   private JavaMailSender mailSender;
 
   @Value("${spring.mail.username}")
-  private String to;
+  private String from;
 
   @Test
   public void sendMail() throws Exception {
@@ -26,8 +26,8 @@ class MailServiceTest {
 
       // WHEN
     SimpleMailMessage message = new SimpleMailMessage();
-    message.setTo(to);
-    message.setFrom(mailDto.getFrom());
+    message.setFrom(from);
+    message.setTo(mailDto.getTo());
     message.setSubject(mailDto.getTitle());
     message.setText(mailDto.getMessage());
 

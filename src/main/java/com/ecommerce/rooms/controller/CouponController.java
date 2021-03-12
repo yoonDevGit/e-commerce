@@ -17,17 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/coupon")
 public class CouponController {
 
   private final CouponService couponService;
 
-  @GetMapping("/{couponId}")
+  @GetMapping("/coupon/{couponId}")
   public ResponseEntity<CouponDto> getCoupon(@PathVariable("couponId") @Valid Long couponId) {
     return new ResponseEntity<>(couponService.getCoupon(couponId), HttpStatus.OK);
   }
 
-  @PostMapping
+  @PostMapping("/coupon")
   public ResponseEntity<Void> createCoupon(@Valid CouponDto couponDto) {
     try {
       couponService.createCoupon(couponDto);
@@ -37,7 +36,7 @@ public class CouponController {
     }
   }
 
-  @DeleteMapping("/{couponId}")
+  @DeleteMapping("/coupon/{couponId}")
   public ResponseEntity<Void> deleteCoupon(@PathVariable("couponId") @Valid Long couponId) {
     try {
       couponService.deleteCoupon(couponId);

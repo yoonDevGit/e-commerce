@@ -32,7 +32,7 @@ public class UserService {
 
   public Page<UserDto> getPageAll(Pageable pageable) {
     Page<User> users = userRepository.findAll(pageable);
-    return users.map(u -> new UserDto(u.getAccount(), u.getPhone(), u.getEmail(), u.getPoint()));
+    return users.map(UserDto::new);
   }
 
   public Slice<UserDto> getSliceAll(Pageable pageable) {

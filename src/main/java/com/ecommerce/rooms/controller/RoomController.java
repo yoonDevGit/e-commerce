@@ -2,10 +2,15 @@ package com.ecommerce.rooms.controller;
 
 import com.ecommerce.rooms.common.vaildation.ValidationAccommodation;
 import com.ecommerce.rooms.dto.RoomDto;
+import com.ecommerce.rooms.dto.UserDto;
 import com.ecommerce.rooms.service.RoomService;
 import java.util.NoSuchElementException;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -43,6 +49,18 @@ public class RoomController {
     } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
     }
+  }
+
+  @GetMapping("/accommodation/{accommodationType}/{accommodationId}/room-page")
+  @ResponseStatus
+  public Page<RoomDto> getPageAll(
+      @PageableDefault(size = 5, sort = "name") Pageable pageable) {
+    return roomService.getPageAll(pageable);
+  }
+
+  @GetMapping("/accommodation/{accommodationType}/{accommodationId}/room-slice")
+  public Slice<RoomDto> getSliceAll(@PageableDefault(size = 5, sort = "name") Pageable pageable) {
+    return roomService.getSliceAll(pageable);
   }
 
   @DeleteMapping("/accommodation/{accommodationType}/{accommodationId}/room/{roomId}")

@@ -2,11 +2,16 @@ package com.ecommerce.rooms.service;
 
 import com.ecommerce.rooms.domain.Accommodation.AccommodationHotel;
 import com.ecommerce.rooms.domain.Accommodation.AccommodationPenstion;
+import com.ecommerce.rooms.domain.User;
 import com.ecommerce.rooms.domain.room.Room;
 import com.ecommerce.rooms.dto.RoomDto;
+import com.ecommerce.rooms.dto.UserDto;
 import com.ecommerce.rooms.repository.AccommodationRepository;
 import com.ecommerce.rooms.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -44,5 +49,15 @@ public class RoomService {
   public void deleteRoom(Long roomId) {
     Room room = roomRepository.findById(roomId).orElseThrow();
     roomRepository.delete(room);
+  }
+
+  public Page<RoomDto> getPageAll(Pageable pageable) {
+    Page<Room> rooms = roomRepository.findAll(pageable);
+    return rooms.map(RoomDto::new);
+  }
+
+  public Slice<RoomDto> getSliceAll(Pageable pageable) {
+    Slice<Room> rooms = roomRepository.findAll(pageable);
+    return rooms.map(RoomDto::new);
   }
 }
