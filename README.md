@@ -1,4 +1,3 @@
-# E-Commerce
 ## 개발 목적
 Spring-Boot 및 JPA 기술 스터디
 
