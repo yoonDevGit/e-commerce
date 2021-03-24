@@ -3,6 +3,8 @@ package com.ecommerce.rooms.service;
 import com.ecommerce.rooms.domain.User;
 import com.ecommerce.rooms.dto.UserDto;
 import com.ecommerce.rooms.repository.UserRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,5 +40,10 @@ public class UserService {
   public Slice<UserDto> getSliceAll(Pageable pageable) {
     Slice<User> users = userRepository.findAll(pageable);
     return users.map(UserDto::new);
+  }
+
+  public List<UserDto> findUsers() {
+    List<User> users = userRepository.findAll();
+    return users.stream().map(UserDto::new).collect(Collectors.toList());
   }
 }

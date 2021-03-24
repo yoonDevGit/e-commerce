@@ -1,4 +1,4 @@
-package com.ecommerce.rooms.controller;
+package com.ecommerce.rooms.api;
 
 import com.ecommerce.rooms.dto.ReservationDto;
 import com.ecommerce.rooms.service.ReservationService;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class ReservationController {
+public class ReservationApiController {
 
   private final ReservationService reservationService;
 

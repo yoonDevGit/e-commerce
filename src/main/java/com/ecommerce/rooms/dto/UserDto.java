@@ -6,7 +6,7 @@ import lombok.*;
 @Data
 @EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class UserDto {
 
   private String account;

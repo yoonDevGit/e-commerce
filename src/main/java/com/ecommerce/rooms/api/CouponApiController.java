@@ -1,4 +1,4 @@
-package com.ecommerce.rooms.controller;
+package com.ecommerce.rooms.api;
 
 import com.ecommerce.rooms.dto.CouponDto;
 import com.ecommerce.rooms.service.CouponService;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class CouponController {
+public class CouponApiController {
 
   private final CouponService couponService;
 

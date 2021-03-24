@@ -1,8 +1,7 @@
-package com.ecommerce.rooms.controller;
+package com.ecommerce.rooms.api;
 
 import com.ecommerce.rooms.common.vaildation.ValidationAccommodation;
 import com.ecommerce.rooms.dto.RoomDto;
-import com.ecommerce.rooms.dto.UserDto;
 import com.ecommerce.rooms.service.RoomService;
 import java.util.NoSuchElementException;
 import javax.validation.Valid;
@@ -23,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class RoomController {
+public class RoomApiController {
 
   private final RoomService roomService;
   private final ValidationAccommodation validationAccommodation;

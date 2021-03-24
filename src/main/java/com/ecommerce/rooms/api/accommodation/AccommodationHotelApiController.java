@@ -1,8 +1,7 @@
-package com.ecommerce.rooms.controller.accommodation;
+package com.ecommerce.rooms.api.accommodation;
 
 import com.ecommerce.rooms.dto.accommodation.AccommodationHotelDto;
-import com.ecommerce.rooms.dto.accommodation.AccommodationPenstionDto;
-import com.ecommerce.rooms.service.accommodation.AccommodationPenstionService;
+import com.ecommerce.rooms.service.accommodation.AccommodationHotelService;
 import java.util.NoSuchElementException;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,47 +22,47 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/accommodation/penstion")
-public class AccommodationPenstionController {
+@RequestMapping("/accommodation")
+public class AccommodationHotelApiController {
 
-  private final AccommodationPenstionService accommodationPenstionService;
+  private final AccommodationHotelService accommodationHotelService;
 
-  @GetMapping("/{accommodationId}")
-  public ResponseEntity<AccommodationPenstionDto> getAccommodation(
+  @GetMapping("/hotel/{accommodationId}")
+  public ResponseEntity<AccommodationHotelDto> getAccommodation(
       @PathVariable("accommodationId") @Valid Long accommodationId) {
-    return new ResponseEntity<>(
-        accommodationPenstionService.getPenstionAccommodation(accommodationId), HttpStatus.OK);
+    return new ResponseEntity(accommodationHotelService.getHotelAccommodation(accommodationId),
+        HttpStatus.OK);
   }
 
-  @GetMapping("/page")
+  @GetMapping("/hotels/page")
   @ResponseStatus
-  public Page<AccommodationPenstionDto> getPageAll(
+  public Page<AccommodationHotelDto> getPageAll(
       @PageableDefault(size = 5, sort = "name") Pageable pageable) {
-    return accommodationPenstionService.getPageAll(pageable);
+    return accommodationHotelService.getPageAll(pageable);
   }
 
-  @GetMapping("/slice")
-  public Slice<AccommodationPenstionDto> getSliceAll(
+  @GetMapping("/hotels/slice")
+  public Slice<AccommodationHotelDto> getSliceAll(
       @PageableDefault(size = 5, sort = "name") Pageable pageable) {
-    return accommodationPenstionService.getSliceAll(pageable);
+    return accommodationHotelService.getSliceAll(pageable);
   }
 
   @PostMapping
   public ResponseEntity<Void> createAccommodation(
-      @RequestBody @Valid AccommodationPenstionDto accommodationPenstionDto) {
+      @RequestBody @Valid AccommodationHotelDto accommodationHotelDto) {
     try {
-      accommodationPenstionService.createPenstionAccommodation(accommodationPenstionDto);
+      accommodationHotelService.createHotelAccommodation(accommodationHotelDto);
       return new ResponseEntity<>(HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
     }
   }
 
-  @DeleteMapping("/{accommodationId}")
+  @DeleteMapping("/hotel/{accommodationId}")
   public ResponseEntity<Void> deleteAccommodation(
       @PathVariable("accommodationId") @Valid Long accommodationId) {
     try {
-      accommodationPenstionService.deletePenstionAccommodation(accommodationId);
+      accommodationHotelService.deleteHotelAccommodation(accommodationId);
       return new ResponseEntity<>(HttpStatus.OK);
     } catch (NoSuchElementException e) {
       return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
