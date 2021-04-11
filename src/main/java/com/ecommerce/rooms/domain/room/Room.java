@@ -2,7 +2,7 @@ package com.ecommerce.rooms.domain.room;
 
 import static javax.persistence.FetchType.LAZY;
 
-import com.ecommerce.rooms.domain.Accommodation.Accommodation;
+import com.ecommerce.rooms.domain.accommodation.Accommodation;
 import com.ecommerce.rooms.domain.Reservation;
 import com.ecommerce.rooms.domain.base.BaseTimeEntity;
 import com.ecommerce.rooms.dto.RoomDto;

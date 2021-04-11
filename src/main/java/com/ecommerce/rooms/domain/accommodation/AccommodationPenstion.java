@@ -1,4 +1,4 @@
-package com.ecommerce.rooms.domain.Accommodation;
+package com.ecommerce.rooms.domain.accommodation;
 
 import com.ecommerce.rooms.dto.accommodation.AccommodationPenstionDto;
 import javax.persistence.DiscriminatorValue;

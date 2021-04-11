@@ -1,10 +1,8 @@
-package com.ecommerce.rooms.domain.Accommodation;
+package com.ecommerce.rooms.domain.accommodation;
 
 import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.EnumType.STRING;
 import static javax.persistence.FetchType.LAZY;
 
-import com.ecommerce.rooms.common.Constant.AccommodationType;
 import com.ecommerce.rooms.domain.Reservation;
 import com.ecommerce.rooms.domain.base.BaseTimeEntity;
 import com.ecommerce.rooms.domain.room.Room;
@@ -14,8 +12,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -23,13 +19,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /** 숙박 업체
  * */

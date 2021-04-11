@@ -1,7 +1,7 @@
 package com.ecommerce.rooms.service;
 
-import com.ecommerce.rooms.domain.Accommodation.AccommodationHotel;
-import com.ecommerce.rooms.domain.Accommodation.AccommodationPenstion;
+import com.ecommerce.rooms.domain.accommodation.AccommodationHotel;
+import com.ecommerce.rooms.domain.accommodation.AccommodationPenstion;
 import com.ecommerce.rooms.domain.room.Room;
 import com.ecommerce.rooms.dto.RoomDto;
 import com.ecommerce.rooms.repository.AccommodationRepository;

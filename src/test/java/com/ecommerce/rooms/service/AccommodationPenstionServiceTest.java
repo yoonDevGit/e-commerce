@@ -3,8 +3,8 @@ package com.ecommerce.rooms.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.ecommerce.rooms.domain.Accommodation.AccommodationHotel;
-import com.ecommerce.rooms.domain.Accommodation.AccommodationPenstion;
+import com.ecommerce.rooms.domain.accommodation.AccommodationHotel;
+import com.ecommerce.rooms.domain.accommodation.AccommodationPenstion;
 import com.ecommerce.rooms.dto.accommodation.AccommodationPenstionDto;
 import com.ecommerce.rooms.repository.AccommodationRepository;
 import java.util.NoSuchElementException;

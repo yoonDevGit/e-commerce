@@ -3,7 +3,7 @@ package com.ecommerce.rooms.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import com.ecommerce.rooms.domain.Accommodation.AccommodationHotel;
+import com.ecommerce.rooms.domain.accommodation.AccommodationHotel;
 import com.ecommerce.rooms.domain.Reservation;
 import com.ecommerce.rooms.domain.User;
 import com.ecommerce.rooms.domain.room.Room;

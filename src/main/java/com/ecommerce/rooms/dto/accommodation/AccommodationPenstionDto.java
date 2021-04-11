@@ -1,6 +1,6 @@
 package com.ecommerce.rooms.dto.accommodation;
 
-import com.ecommerce.rooms.domain.Accommodation.AccommodationPenstion;
+import com.ecommerce.rooms.domain.accommodation.AccommodationPenstion;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;

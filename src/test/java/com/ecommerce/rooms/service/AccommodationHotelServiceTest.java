@@ -1,11 +1,8 @@
 package com.ecommerce.rooms.service;
 
-import com.ecommerce.rooms.domain.Accommodation.AccommodationHotel;
-import com.ecommerce.rooms.domain.Accommodation.AccommodationPenstion;
-import com.ecommerce.rooms.domain.User;
+import com.ecommerce.rooms.domain.accommodation.AccommodationHotel;
 import com.ecommerce.rooms.domain.room.Room;
 import com.ecommerce.rooms.dto.RoomDto;
-import com.ecommerce.rooms.dto.UserDto;
 import com.ecommerce.rooms.dto.accommodation.AccommodationHotelDto;
 import com.ecommerce.rooms.repository.AccommodationRepository;
 import com.ecommerce.rooms.repository.RoomRepository;
@@ -18,7 +15,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import static org.assertj.core.api.Assertions.assertThat;

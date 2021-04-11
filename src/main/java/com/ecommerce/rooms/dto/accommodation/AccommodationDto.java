@@ -1,6 +1,6 @@
 package com.ecommerce.rooms.dto.accommodation;
 
-import com.ecommerce.rooms.domain.Accommodation.Accommodation;
+import com.ecommerce.rooms.domain.accommodation.Accommodation;
 import com.ecommerce.rooms.dto.RoomDto;
 import java.util.List;
 import lombok.AccessLevel;
