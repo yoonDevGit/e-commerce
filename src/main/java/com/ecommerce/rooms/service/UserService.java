@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,11 +23,13 @@ public class UserService {
     return new UserDto(user);
   }
 
+  @Transactional
   public void createUser(UserDto userDto) {
     User user = new User(userDto);
     userRepository.save(user);
   }
 
+  @Transactional
   public void deleteUser(Long userId) {
     User user = userRepository.findById(userId).orElseThrow();
     userRepository.delete(user);

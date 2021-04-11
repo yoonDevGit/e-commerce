@@ -14,9 +14,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class ReservationService {
 
   private final ReservationRepository reservationRepository;
@@ -29,6 +31,7 @@ public class ReservationService {
     return new ReservationDto(reservation);
   }
 
+  @Transactional
   public void createReservation(Long userId, Long memberId) {
     User user = userRepository.findById(userId).orElseThrow();
     Room room = roomRepository.findById(memberId).orElseThrow();
@@ -37,6 +40,7 @@ public class ReservationService {
     reservationRepository.save(reservation);
   }
 
+  @Transactional
   public void deleteReservation(Long couponId) {
     Reservation reservation = reservationRepository.findById(couponId).orElseThrow();
     reservationRepository.delete(reservation);

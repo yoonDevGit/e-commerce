@@ -8,9 +8,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class AccommodationPenstionService {
 
   private final AccommodationRepository<AccommodationPenstion> penstionAccommodationRepository;
@@ -21,12 +23,14 @@ public class AccommodationPenstionService {
     return new AccommodationPenstionDto(accommodationPenstion);
   }
 
+  @Transactional
   public void createPenstionAccommodation(AccommodationPenstionDto accommodationPenstionDto) {
     AccommodationPenstion accommodationPenstion = new AccommodationPenstion(
         accommodationPenstionDto);
     penstionAccommodationRepository.save(accommodationPenstion);
   }
 
+  @Transactional
   public void deletePenstionAccommodation(Long accommodationId) {
     AccommodationPenstion accommodationPenstion = penstionAccommodationRepository
         .findById(accommodationId).orElseThrow();
