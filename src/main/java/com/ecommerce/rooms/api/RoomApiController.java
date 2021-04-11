@@ -17,17 +17,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/accommodation")
 public class RoomApiController {
 
   private final RoomService roomService;
   private final ValidationAccommodation validationAccommodation;
 
-  @GetMapping("/accommodation/{accommodationType}/{accommodationId}/room/{roomId}")
+  @GetMapping("/{accommodationType}/{accommodationId}/room/{roomId}")
   public ResponseEntity<RoomDto> getRoom(
       @PathVariable("accommodationType") @Valid String accommodationType,
       @PathVariable("accommodationId") @Valid Long accommodationId,
@@ -37,7 +39,7 @@ public class RoomApiController {
         HttpStatus.OK);
   }
 
-  @PostMapping("/accommodation/{accommodationType}/{accommodationId}/room")
+  @PostMapping("/{accommodationType}/{accommodationId}/room")
   public ResponseEntity<Void> createRoom(@RequestBody @Valid RoomDto roomDto,
       @PathVariable("accommodationType") @Valid String accommodationType,
       @PathVariable("accommodationId") @Valid Long accommodationId) {
@@ -50,19 +52,19 @@ public class RoomApiController {
     }
   }
 
-  @GetMapping("/accommodation/{accommodationType}/{accommodationId}/room-page")
+  @GetMapping("/{accommodationType}/{accommodationId}/page")
   @ResponseStatus
   public Page<RoomDto> getPageAll(
       @PageableDefault(size = 5, sort = "name") Pageable pageable) {
     return roomService.getPageAll(pageable);
   }
 
-  @GetMapping("/accommodation/{accommodationType}/{accommodationId}/room-slice")
+  @GetMapping("/{accommodationType}/{accommodationId}/slice")
   public Slice<RoomDto> getSliceAll(@PageableDefault(size = 5, sort = "name") Pageable pageable) {
     return roomService.getSliceAll(pageable);
   }
 
-  @DeleteMapping("/accommodation/{accommodationType}/{accommodationId}/room/{roomId}")
+  @DeleteMapping("/{accommodationType}/{accommodationId}/room/{roomId}")
   public ResponseEntity<Void> deleteRoom (
       @PathVariable("accommodationType") @Valid String accommodationType,
       @PathVariable("accommodationId") @Valid Long accommodationId,

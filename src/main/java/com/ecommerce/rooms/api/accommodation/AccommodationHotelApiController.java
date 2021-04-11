@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/accommodation")
+@RequestMapping("/api/v1/accommodation")
 public class AccommodationHotelApiController {
 
   private final AccommodationHotelService accommodationHotelService;

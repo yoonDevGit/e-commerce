@@ -18,34 +18,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/user")
 public class UserApiController {
 
   private final UserService userService;
   private final MailService mailService;
 
-  @GetMapping("/user/{userId}")
+  @GetMapping("/{userId}")
   public ResponseEntity<UserDto> getUser(@PathVariable("userId") @Valid Long userId) {
     return new ResponseEntity<>(userService.getUser(userId), HttpStatus.OK);
   }
 
-  @GetMapping("/users-page")
+  @GetMapping("/page")
   @ResponseStatus
   public Page<UserDto> getPageAll(
       @PageableDefault(size = 5, sort = "username") Pageable pageable) {
     return userService.getPageAll(pageable);
   }
 
-  @GetMapping("/users-slice")
+  @GetMapping("/slice")
   public Slice<UserDto> getSliceAll(@PageableDefault(size = 5, sort = "username") Pageable pageable) {
     return userService.getSliceAll(pageable);
   }
 
-  @PostMapping("/user")
+  @PostMapping
   public ResponseEntity<Void> createUser(@RequestBody @Valid UserDto userDto) {
     try {
       userService.createUser(userDto);
@@ -57,7 +59,7 @@ public class UserApiController {
     }
   }
 
-  @DeleteMapping("/user/{userId}")
+  @DeleteMapping("/{userId}")
   public ResponseEntity<Void> deleteUser(@PathVariable("userId") @Valid Long userId) {
     try {
       userService.deleteUser(userId);

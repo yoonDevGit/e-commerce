@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/accommodation/penstion")
+@RequestMapping("/api/v1/accommodation/penstion")
 public class AccommodationPenstionApiController {
 
   private final AccommodationPenstionService accommodationPenstionService;

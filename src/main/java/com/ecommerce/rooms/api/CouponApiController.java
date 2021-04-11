@@ -15,33 +15,35 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/v1/coupon")
 public class CouponApiController {
 
   private final CouponService couponService;
 
-  @GetMapping("/coupon/{couponId}")
+  @GetMapping("/{couponId}")
   public ResponseEntity<CouponDto> getCoupon(@PathVariable("couponId") @Valid Long couponId) {
     return new ResponseEntity<>(couponService.getCoupon(couponId), HttpStatus.OK);
   }
 
-  @GetMapping("/coupons-page")
+  @GetMapping("/page")
   @ResponseStatus
   public Page<CouponDto> getPageAll(
       @PageableDefault(size = 5, sort = "name") Pageable pageable) {
     return couponService.getPageAll(pageable);
   }
 
-  @GetMapping("/coupons-slice")
+  @GetMapping("/slice")
   public Slice<CouponDto> getSliceAll(@PageableDefault(size = 5, sort = "name") Pageable pageable) {
     return couponService.getSliceAll(pageable);
   }
 
-  @PostMapping("/coupon")
+  @PostMapping
   public ResponseEntity<Void> createCoupon(@Valid CouponDto couponDto) {
     try {
       couponService.createCoupon(couponDto);
@@ -51,7 +53,7 @@ public class CouponApiController {
     }
   }
 
-  @DeleteMapping("/coupon/{couponId}")
+  @DeleteMapping("/{couponId}")
   public ResponseEntity<Void> deleteCoupon(@PathVariable("couponId") @Valid Long couponId) {
     try {
       couponService.deleteCoupon(couponId);
