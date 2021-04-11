@@ -1,6 +1,7 @@
 package com.ecommerce.rooms.dto.accommodation;
 
 import com.ecommerce.rooms.domain.accommodation.AccommodationHotel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class AccommodationHotelDto extends AccommodationDto {
   private String convenienceInfo;
 
   // 취사 시설
+  @ApiModelProperty(required = true)
   private String cookingFacilities;
 
   public AccommodationHotelDto(String name, String phone, String address, String detailedAddress,

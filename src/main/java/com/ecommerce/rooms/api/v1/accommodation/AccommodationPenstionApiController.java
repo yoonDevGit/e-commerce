@@ -1,7 +1,9 @@
-package com.ecommerce.rooms.api.accommodation;
+package com.ecommerce.rooms.api.v1.accommodation;
 
-import com.ecommerce.rooms.dto.accommodation.AccommodationHotelDto;
-import com.ecommerce.rooms.service.accommodation.AccommodationHotelService;
+import com.ecommerce.rooms.dto.accommodation.AccommodationPenstionDto;
+import com.ecommerce.rooms.service.accommodation.AccommodationPenstionService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import java.util.NoSuchElementException;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,47 +24,52 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/accommodation")
-public class AccommodationHotelApiController {
+@RequestMapping("/api/v1/accommodation/penstion")
+@Api(value = "AccommodationPenstionApiController v1")
+public class AccommodationPenstionApiController {
 
-  private final AccommodationHotelService accommodationHotelService;
+  private final AccommodationPenstionService accommodationPenstionService;
 
-  @GetMapping("/hotel/{accommodationId}")
-  public ResponseEntity<AccommodationHotelDto> getAccommodation(
+  @GetMapping("/{accommodationId}")
+  @ApiOperation(value="펜션 상세")
+  public ResponseEntity<AccommodationPenstionDto> getAccommodation(
       @PathVariable("accommodationId") @Valid Long accommodationId) {
-    return new ResponseEntity(accommodationHotelService.getHotelAccommodation(accommodationId),
-        HttpStatus.OK);
+    return new ResponseEntity<>(
+        accommodationPenstionService.getPenstionAccommodation(accommodationId), HttpStatus.OK);
   }
 
-  @GetMapping("/hotels/page")
-  @ResponseStatus
-  public Page<AccommodationHotelDto> getPageAll(
+  @GetMapping("/page")
+  @ApiOperation(value="펜션 목록 페이지")
+  public Page<AccommodationPenstionDto> getPageAll(
       @PageableDefault(size = 5, sort = "name") Pageable pageable) {
-    return accommodationHotelService.getPageAll(pageable);
+    return accommodationPenstionService.getPageAll(pageable);
   }
 
-  @GetMapping("/hotels/slice")
-  public Slice<AccommodationHotelDto> getSliceAll(
+  @GetMapping("/slice")
+  @ApiOperation(value="펜션 목록 슬라이스")
+  public Slice<AccommodationPenstionDto> getSliceAll(
       @PageableDefault(size = 5, sort = "name") Pageable pageable) {
-    return accommodationHotelService.getSliceAll(pageable);
+    return accommodationPenstionService.getSliceAll(pageable);
   }
 
   @PostMapping
+  @ApiOperation(value="펜션 추가")
   public ResponseEntity<Void> createAccommodation(
-      @RequestBody @Valid AccommodationHotelDto accommodationHotelDto) {
+      @RequestBody @Valid AccommodationPenstionDto accommodationPenstionDto) {
     try {
-      accommodationHotelService.createHotelAccommodation(accommodationHotelDto);
+      accommodationPenstionService.createPenstionAccommodation(accommodationPenstionDto);
       return new ResponseEntity<>(HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
     }
   }
 
-  @DeleteMapping("/hotel/{accommodationId}")
+  @DeleteMapping("/{accommodationId}")
+  @ApiOperation(value="펜션 삭제")
   public ResponseEntity<Void> deleteAccommodation(
       @PathVariable("accommodationId") @Valid Long accommodationId) {
     try {
-      accommodationHotelService.deleteHotelAccommodation(accommodationId);
+      accommodationPenstionService.deletePenstionAccommodation(accommodationId);
       return new ResponseEntity<>(HttpStatus.OK);
     } catch (NoSuchElementException e) {
       return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
